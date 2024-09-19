@@ -18,6 +18,22 @@ struct TreeNode {
 	TreeNode(int v, TreeNode *l, TreeNode *r) : val(v), left(l), right(r) {}
 };
 
+void postorder(TreeNode *root) {
+	if (!root) return;
+
+	postorder(root->left);
+	postorder(root->right);
+	std::cout << root->val << ", ";
+}
+
+void preorder(TreeNode *root) {
+	if (!root) return;
+
+	std::cout << root->val << ", ";
+	preorder(root->left);
+	preorder(root->right);
+}
+
 void inorder(TreeNode *root) {
 	if (!root) return;
 
