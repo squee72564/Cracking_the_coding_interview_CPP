@@ -5,12 +5,12 @@
 
 #include "TreeAndGraph.hpp"
 
-static TreeNode * minimalTree(std::vector<int>&& v, int l, int r) {
+static TreeNode * minimalTree(const std::vector<int>& v, int l, int r) {
 	if (l > r) return nullptr;
 
 	const int mid = l + (r-l) / 2;
 
-	return new TreeNode(v[mid], minimalTree(std::forward<std::vector<int>>(v), l, mid-1), minimalTree(std::forward<std::vector<int>>(v), mid+1, r));
+	return new TreeNode(v[mid], minimalTree(v, l, mid-1), minimalTree(v, mid+1, r));
 }
 
 struct Node {
@@ -58,7 +58,7 @@ std::vector<Node*> list_of_depths(TreeNode *root) {
 }
 
 int main() {
-	TreeNode *root = minimalTree({0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}, 0, 14);
+	TreeNode *root = minimalTree(std::vector<int>{0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}, 0, 14);
 
 	std::cout << "Tree:\n";
 
